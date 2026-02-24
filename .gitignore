@@ -1,0 +1,24 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.bak
+*~
+
+# Logs
+*.log
+
+# Don't ignore skill folders, but ignore common temp files in them
+**/.env
+**/.env.local
+**/node_modules/
+**/__pycache__/
+**/*.pyc
