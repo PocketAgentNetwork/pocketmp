@@ -23,37 +23,32 @@ PocketMP is the official skills marketplace for PocketAgent. It contains:
 
 ## How to Browse Skills
 
-### Method 1: GitHub (Web)
-1. Visit https://github.com/PocketAgentNetwork/pocketmp
-2. Browse `official/` or `community/` folders
-3. Read SKILL.md files to see what each skill does
-
-### Method 2: Command Line
+### Method 1: One-Line Command (Fastest)
 ```bash
-cd /path/to/pocketmp
-./scripts/install.sh --list
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- --list
 ```
 
-This shows all available skills with descriptions.
+This shows all available skills with descriptions instantly.
 
-### Method 3: Get Skill Info
+### Method 2: Get Skill Info
 ```bash
-./scripts/install.sh --info skill-name
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- --info skill-name
 ```
 
 Shows detailed information about a specific skill.
 
+### Method 3: GitHub (Web)
+1. Visit https://github.com/PocketAgentNetwork/pocketmp
+2. Browse `official/` or `community/` folders
+3. Read SKILL.md files to see what each skill does
+
 ## How to Install Skills
 
-### Basic Installation
+### One-Line Install (Recommended)
 
 ```bash
-# Clone the marketplace (first time only)
-git clone https://github.com/PocketAgentNetwork/pocketmp.git
-cd pocketmp
-
-# Install a skill
-./scripts/install.sh skill-name
+# Install any skill directly (no cloning needed!)
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- web-search
 ```
 
 **Default location:** `~/.openclaw/workspace/skills/`
@@ -61,32 +56,29 @@ cd pocketmp
 ### Custom Installation Path
 
 ```bash
-./scripts/install.sh --path /custom/path/ skill-name
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- web-search --path /custom/path
 ```
 
-### Installation Options
+### All Available Commands
 
 ```bash
 # List all available skills
-./scripts/install.sh --list
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- --list
 
 # Get detailed info about a skill
-./scripts/install.sh --info skill-name
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- --info skill-name
 
 # Install a skill (default path)
-./scripts/install.sh skill-name
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- skill-name
 
 # Install to custom path
-./scripts/install.sh --path /custom/path skill-name
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- skill-name --path /custom/path
 
 # Remove an installed skill
-./scripts/install.sh --remove skill-name
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- --remove skill-name
 
 # Remove from custom path
-./scripts/install.sh --remove skill-name --path /custom/path
-
-# Show help
-./scripts/install.sh --help
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- --remove skill-name --path /custom/path
 ```
 
 ### After Installation
@@ -158,20 +150,18 @@ skill-name/
 ### Update Skills
 
 ```bash
-cd pocketmp
-git pull origin main
-./scripts/install.sh skill-name  # Reinstall to update
+# Reinstall to get latest version
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- skill-name
 ```
 
 ### Remove Skills
 
 **Method 1: Using Install Script (Recommended)**
 ```bash
-cd pocketmp
-./scripts/install.sh --remove skill-name
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- --remove skill-name
 
 # Or from custom path
-./scripts/install.sh --remove skill-name --path /custom/path
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- --remove skill-name --path /custom/path
 ```
 
 **Method 2: Manual Removal**
@@ -190,8 +180,7 @@ ls ~/.openclaw/workspace/skills/
 ### Check Available Skills
 
 ```bash
-cd pocketmp
-./scripts/install.sh --list
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- --list
 ```
 
 ## Best Practices
@@ -223,15 +212,11 @@ cd pocketmp
 ### Example 1: Installing Web Search Skill
 
 ```bash
-# Clone marketplace
-git clone https://github.com/PocketAgentNetwork/pocketmp.git
-cd pocketmp
-
-# Check skill info
-./scripts/install.sh --info web-search
+# Check skill info first
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- --info web-search
 
 # Install it
-./scripts/install.sh web-search
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- web-search
 
 # Restart agent
 # Now you can use web search effectively!
@@ -240,12 +225,10 @@ cd pocketmp
 ### Example 2: Installing Multiple Skills
 
 ```bash
-cd pocketmp
-
-# Install several skills
-./scripts/install.sh skill-maker
-./scripts/install.sh agent-maker
-./scripts/install.sh code-review
+# Install several skills (one at a time)
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- skill-maker
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- agent-maker
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- code-review
 
 # Restart agent
 # All skills are now available!
@@ -254,13 +237,11 @@ cd pocketmp
 ### Example 3: Removing a Skill
 
 ```bash
-cd pocketmp
-
 # Check what's installed
 ls ~/.openclaw/workspace/skills/
 
 # Remove a skill you no longer need
-./scripts/install.sh --remove web-search
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- --remove web-search
 
 # Restart agent
 # Skill is now removed!
@@ -269,19 +250,17 @@ ls ~/.openclaw/workspace/skills/
 ### Example 4: Managing Skills
 
 ```bash
-cd pocketmp
-
 # List all available skills
-./scripts/install.sh --list
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- --list
 
 # Get info about a specific skill
-./scripts/install.sh --info code-review
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- --info code-review
 
 # Install it
-./scripts/install.sh code-review
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- code-review
 
 # Later, if you don't need it anymore
-./scripts/install.sh --remove code-review
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- --remove code-review
 ```
 
 ## Troubleshooting
@@ -307,23 +286,14 @@ cd pocketmp
 
 ## Advanced Usage
 
-### Keeping Marketplace Updated
+### Keeping Skills Updated
 
 ```bash
-# Add to your agent's routine
-cd /path/to/pocketmp
-git pull origin main
+# Reinstall any skill to get the latest version
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- skill-name
 
 # Check for new skills
-./scripts/install.sh --list
-```
-
-### Creating Your Own Skill Collection
-
-```bash
-# Fork the marketplace
-# Add your own skills to a custom folder
-# Share with your team
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- --list
 ```
 
 ### Skill Discovery
