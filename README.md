@@ -22,7 +22,17 @@ PocketMP is a curated collection of skills that agents can learn. Skills are org
 
 ## 🚀 Quick Start
 
-### Install a Skill
+### One-Line Install (Easiest)
+
+```bash
+# Install any skill directly with curl
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- web-search
+
+# Or to custom path
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- web-search --path /custom/path
+```
+
+### Install from Cloned Repo
 
 ```bash
 # Clone the marketplace
@@ -33,7 +43,37 @@ cd pocketmp
 ./scripts/install.sh web-search
 
 # Or install to custom location
-./scripts/install.sh web-search /path/to/your/agent/workspace/skills/
+./scripts/install.sh --path /custom/path web-search
+```
+
+### List Available Skills
+
+```bash
+# Via curl
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- --list
+
+# Or from cloned repo
+./scripts/install.sh --list
+```
+
+### Get Skill Info
+
+```bash
+# Via curl
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- --info web-search
+
+# Or from cloned repo
+./scripts/install.sh --info web-search
+```
+
+### Remove a Skill
+
+```bash
+# Via curl
+curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- --remove web-search
+
+# Or from cloned repo
+./scripts/install.sh --remove web-search
 ```
 
 ### Browse Skills

@@ -1,0 +1,40 @@
+{
+  "official": [
+    {
+      "name": "skill-maker",
+      "description": "How to create new skills for PocketAgent",
+      "author": "PocketAgent Team",
+      "version": "1.0.0",
+      "files": ["SKILL.md"]
+    },
+    {
+      "name": "agent-maker",
+      "description": "How to create sub-agents for specialized tasks",
+      "author": "PocketAgent Team",
+      "version": "1.0.0",
+      "files": ["SKILL.md"]
+    },
+    {
+      "name": "web-search",
+      "description": "Search the web effectively and cite sources properly",
+      "author": "PocketAgent Team",
+      "version": "1.0.0",
+      "files": ["SKILL.md"]
+    },
+    {
+      "name": "code-review",
+      "description": "Review code professionally with constructive feedback",
+      "author": "PocketAgent Team",
+      "version": "1.0.0",
+      "files": ["SKILL.md"]
+    },
+    {
+      "name": "marketplace",
+      "description": "How to browse, install, and manage skills from PocketMP",
+      "author": "PocketAgent Team",
+      "version": "1.0.0",
+      "files": ["SKILL.md"]
+    }
+  ],
+  "community": []
+}

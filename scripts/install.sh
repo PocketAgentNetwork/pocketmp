@@ -2,6 +2,7 @@
 
 # PocketMP Skill Installer
 # Installs skills to your PocketAgent workspace
+# Downloads directly from GitHub without cloning
 
 set -e
 
@@ -15,13 +16,13 @@ NC='\033[0m' # No Color
 # Default installation path
 DEFAULT_INSTALL_PATH="$HOME/.openclaw/workspace/skills"
 
-# Script directory
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(dirname "$SCRIPT_DIR")"
+# GitHub raw content base URL
+GITHUB_RAW="https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main"
+GITHUB_API="https://api.github.com/repos/PocketAgentNetwork/pocketmp/contents"
 
 # Functions
 print_usage() {
-    echo "Usage: $0 [OPTIONS] <skill-name>"
+    echo "Usage: curl -fsSL https://raw.githubusercontent.com/PocketAgentNetwork/pocketmp/main/scripts/install.sh | bash -s -- [OPTIONS] <skill-name>"
     echo ""
     echo "Options:"
     echo "  --list              List all available skills"
@@ -31,69 +32,63 @@ print_usage() {
     echo "  --help              Show this help message"
     echo ""
     echo "Examples:"
-    echo "  $0 web-search                    # Install web-search skill"
-    echo "  $0 --path /custom/path web-search  # Install to custom location"
-    echo "  $0 --list                        # List all skills"
-    echo "  $0 --info web-search             # Show skill info"
-    echo "  $0 --remove web-search           # Remove installed skill"
+    echo "  curl -fsSL ... | bash -s -- web-search"
+    echo "  curl -fsSL ... | bash -s -- --path /custom/path web-search"
+    echo "  curl -fsSL ... | bash -s -- --list"
+    echo "  curl -fsSL ... | bash -s -- --info web-search"
+    echo "  curl -fsSL ... | bash -s -- --remove web-search"
 }
 
 list_skills() {
     echo -e "${BLUE}📦 Available Skills:${NC}\n"
     
-    echo -e "${GREEN}Official Skills:${NC}"
-    if [ -d "$REPO_ROOT/official" ]; then
-        for skill in "$REPO_ROOT/official"/*; do
-            if [ -d "$skill" ]; then
-                skill_name=$(basename "$skill")
-                if [ -f "$skill/SKILL.md" ]; then
-                    # Extract description from frontmatter
-                    desc=$(sed -n '/^---$/,/^---$/p' "$skill/SKILL.md" | grep "^description:" | sed 's/description: //' | tr -d '"' | head -1)
-                    if [ -n "$desc" ]; then
-                        echo "  • $skill_name - $desc"
-                    else
-                        echo "  • $skill_name"
-                    fi
-                else
-                    echo "  • $skill_name"
-                fi
-            fi
-        done
+    # Fetch manifest file (single request)
+    local manifest=$(curl -fsSL "$GITHUB_RAW/SKILLS.json" 2>/dev/null)
+    
+    if [ -z "$manifest" ]; then
+        echo -e "${RED}Error: Unable to fetch skills list${NC}"
+        exit 1
     fi
+    
+    echo -e "${GREEN}Official Skills:${NC}"
+    echo "$manifest" | grep -A 100 '"official"' | grep -B 1 '"description"' | grep '"name"' | sed 's/.*"name": "\(.*\)".*/\1/' | while read -r skill; do
+        local desc=$(echo "$manifest" | grep -A 2 "\"name\": \"$skill\"" | grep '"description"' | sed 's/.*"description": "\(.*\)".*/\1/')
+        if [ -n "$desc" ]; then
+            echo "  • $skill - $desc"
+        else
+            echo "  • $skill"
+        fi
+    done
     
     echo ""
     echo -e "${YELLOW}Community Skills:${NC}"
-    if [ -d "$REPO_ROOT/community" ] && [ "$(ls -A "$REPO_ROOT/community" 2>/dev/null)" ]; then
-        for skill in "$REPO_ROOT/community"/*; do
-            if [ -d "$skill" ]; then
-                skill_name=$(basename "$skill")
-                if [ -f "$skill/SKILL.md" ]; then
-                    desc=$(sed -n '/^---$/,/^---$/p' "$skill/SKILL.md" | grep "^description:" | sed 's/description: //' | tr -d '"' | head -1)
-                    if [ -n "$desc" ]; then
-                        echo "  • $skill_name - $desc"
-                    else
-                        echo "  • $skill_name"
-                    fi
-                else
-                    echo "  • $skill_name"
-                fi
+    
+    local community_count=$(echo "$manifest" | grep -A 100 '"community"' | grep '"name"' | wc -l | tr -d ' ')
+    
+    if [ "$community_count" -eq 0 ]; then
+        echo "  (No community skills yet - be the first to contribute!)"
+    else
+        echo "$manifest" | grep -A 100 '"community"' | grep -B 1 '"description"' | grep '"name"' | sed 's/.*"name": "\(.*\)".*/\1/' | while read -r skill; do
+            local desc=$(echo "$manifest" | grep -A 2 "\"name\": \"$skill\"" | grep '"description"' | sed 's/.*"description": "\(.*\)".*/\1/')
+            if [ -n "$desc" ]; then
+                echo "  • $skill - $desc"
+            else
+                echo "  • $skill"
             fi
         done
-    else
-        echo "  (No community skills yet - be the first to contribute!)"
     fi
 }
 
 show_info() {
     local skill_name=$1
-    local skill_path=""
+    local skill_type=""
     
-    # Check official first
-    if [ -d "$REPO_ROOT/official/$skill_name" ]; then
-        skill_path="$REPO_ROOT/official/$skill_name"
+    # Check if skill exists in official
+    if curl -fsSL "$GITHUB_RAW/official/$skill_name/SKILL.md" 2>/dev/null | head -1 > /dev/null 2>&1; then
+        skill_type="official"
         echo -e "${GREEN}Official Skill${NC}"
-    elif [ -d "$REPO_ROOT/community/$skill_name" ]; then
-        skill_path="$REPO_ROOT/community/$skill_name"
+    elif curl -fsSL "$GITHUB_RAW/community/$skill_name/SKILL.md" 2>/dev/null | head -1 > /dev/null 2>&1; then
+        skill_type="community"
         echo -e "${YELLOW}Community Skill${NC}"
     else
         echo -e "${RED}Error: Skill '$skill_name' not found${NC}"
@@ -101,47 +96,43 @@ show_info() {
     fi
     
     echo ""
+    echo -e "${BLUE}Skill Information:${NC}"
     
-    if [ -f "$skill_path/SKILL.md" ]; then
-        # Extract only the first frontmatter block
-        echo -e "${BLUE}Skill Information:${NC}"
-        awk '/^---$/{if(++count==2) exit} count==1 && /^(name|description|author|version|tags):/{print "  " $0}' "$skill_path/SKILL.md"
-        
-        echo ""
-        echo -e "${BLUE}Files:${NC}"
-        ls -1 "$skill_path" | sed 's/^/  • /'
-    else
-        echo -e "${RED}Error: SKILL.md not found${NC}"
-        exit 1
-    fi
+    # Fetch and display SKILL.md frontmatter
+    curl -fsSL "$GITHUB_RAW/$skill_type/$skill_name/SKILL.md" 2>/dev/null | awk '/^---$/{if(++count==2) exit} count==1 && /^(name|description|author|version|tags):/{print "  " $0}'
+    
+    echo ""
+    echo -e "${BLUE}Files:${NC}"
+    curl -fsSL "$GITHUB_API/$skill_type/$skill_name" 2>/dev/null | grep '"name"' | sed 's/.*"name": "\(.*\)".*/  • \1/'
 }
 
 install_skill() {
     local skill_name=$1
     local install_path=$2
-    local skill_source=""
     local skill_type=""
     
-    # Find the skill
-    if [ -d "$REPO_ROOT/official/$skill_name" ]; then
-        skill_source="$REPO_ROOT/official/$skill_name"
+    # Fetch manifest to get skill info
+    local manifest=$(curl -fsSL "$GITHUB_RAW/SKILLS.json" 2>/dev/null)
+    
+    if [ -z "$manifest" ]; then
+        echo -e "${RED}Error: Unable to fetch skills manifest${NC}"
+        exit 1
+    fi
+    
+    # Check if skill exists in official or community
+    if echo "$manifest" | grep -A 100 '"official"' | grep -q "\"name\": \"$skill_name\""; then
         skill_type="official"
-    elif [ -d "$REPO_ROOT/community/$skill_name" ]; then
-        skill_source="$REPO_ROOT/community/$skill_name"
+    elif echo "$manifest" | grep -A 100 '"community"' | grep -q "\"name\": \"$skill_name\""; then
         skill_type="community"
     else
         echo -e "${RED}Error: Skill '$skill_name' not found${NC}"
         echo ""
-        echo "Available skills:"
-        list_skills
+        echo "Run with --list to see available skills"
         exit 1
     fi
     
-    # Validate skill has SKILL.md
-    if [ ! -f "$skill_source/SKILL.md" ]; then
-        echo -e "${RED}Error: Invalid skill - SKILL.md not found${NC}"
-        exit 1
-    fi
+    # Get files list from manifest
+    local files=$(echo "$manifest" | grep -A 10 "\"name\": \"$skill_name\"" | grep '"files"' | sed 's/.*"files": \[\(.*\)\].*/\1/' | tr -d '"' | tr ',' '\n')
     
     # Create installation directory if it doesn't exist
     mkdir -p "$install_path"
@@ -158,9 +149,21 @@ install_skill() {
         rm -rf "$install_path/$skill_name"
     fi
     
-    # Copy skill
+    # Create skill directory
+    mkdir -p "$install_path/$skill_name"
+    
     echo -e "${BLUE}Installing $skill_type skill: $skill_name${NC}"
-    cp -r "$skill_source" "$install_path/$skill_name"
+    
+    # Download each file
+    for file in $files; do
+        file=$(echo "$file" | tr -d ' ')
+        echo "  Downloading $file..."
+        curl -fsSL "$GITHUB_RAW/$skill_type/$skill_name/$file" -o "$install_path/$skill_name/$file" 2>/dev/null || {
+            echo -e "${RED}Error: Failed to download $file${NC}"
+            rm -rf "$install_path/$skill_name"
+            exit 1
+        }
+    done
     
     # Success message
     echo -e "${GREEN}✓ Successfully installed '$skill_name' to $install_path/$skill_name${NC}"
