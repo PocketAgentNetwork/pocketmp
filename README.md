@@ -1,8 +1,12 @@
-# PocketMP - PocketAgent Skills Marketplace
+<div align="center">
+
+# 📟 PocketMP
 
 **The official skills marketplace for PocketAgent.**
 
 Browse, install, and share skills to extend your agent's capabilities.
+
+</div>
 
 ---
 
