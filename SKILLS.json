@@ -36,5 +36,14 @@
       "files": ["SKILL.md"]
     }
   ],
-  "community": []
+  "community": [
+    {
+      "name": "resume-builder",
+      "description": "Generate ATS-optimized resumes with quantified achievements and proper formatting",
+      "author": "Community Contributor",
+      "version": "1.0.0",
+      "tags": ["career", "resume", "job-search", "ats", "professional-development"],
+      "files": ["SKILL.md", "generate_resume.py", "example_resume.json", "requirements.txt", "README.md"]
+    }
+  ]
 }

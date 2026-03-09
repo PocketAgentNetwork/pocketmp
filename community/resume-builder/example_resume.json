@@ -1,0 +1,77 @@
+{
+  "header": {
+    "name": "Jane Smith",
+    "location": "San Francisco, CA",
+    "phone": "(555) 123-4567",
+    "email": "jane.smith@email.com",
+    "linkedin": "linkedin.com/in/janesmith",
+    "portfolio": "janesmith.dev",
+    "target_role": "Senior Product Manager"
+  },
+  "summary": "Strategic Product Manager with 6+ years driving user-centric solutions in SaaS. Proven track record of launching features that increase retention by 40%+ through data-driven prioritization and cross-functional leadership. Seeking to leverage product strategy expertise to help Stripe scale payment infrastructure globally.",
+  "skills": {
+    "Technical": ["SQL", "Python", "Tableau", "Figma", "Jira", "Amplitude"],
+    "Methodologies": ["Agile/Scrum", "Design Thinking", "A/B Testing", "OKRs"],
+    "Industry": ["SaaS", "Fintech", "B2B Platforms", "API Products"]
+  },
+  "experience": [
+    {
+      "company": "TechCorp Inc",
+      "location": "San Francisco, CA",
+      "title": "Senior Product Manager",
+      "start_date": "Jan 2021",
+      "end_date": "Present",
+      "bullets": [
+        "Spearheaded API platform redesign serving 50K+ developers, increasing adoption by 65% and reducing support tickets by 40% through improved documentation and SDK quality",
+        "Led cross-functional team of 12 to launch payment processing feature generating $3.2M ARR within 6 months, achieving 95% customer satisfaction score",
+        "Architected product roadmap using data-driven prioritization framework, resulting in 28% increase in feature adoption and 15% improvement in user retention",
+        "Optimized onboarding flow through A/B testing and user research, reducing time-to-value from 14 days to 3 days and increasing activation rate by 45%"
+      ]
+    },
+    {
+      "company": "StartupXYZ",
+      "location": "Remote",
+      "title": "Product Manager",
+      "start_date": "Mar 2019",
+      "end_date": "Dec 2020",
+      "bullets": [
+        "Launched mobile app from 0 to 100K users in 8 months, achieving 4.7-star rating and featured in App Store 'New Apps We Love'",
+        "Collaborated with engineering team of 8 to deliver 15+ features quarterly while maintaining 99.9% uptime and sub-200ms API response times",
+        "Transformed customer feedback into actionable insights using SQL and Amplitude, identifying 3 high-impact features that increased engagement by 35%"
+      ]
+    },
+    {
+      "company": "Enterprise Solutions Co",
+      "location": "New York, NY",
+      "title": "Associate Product Manager",
+      "start_date": "Jun 2017",
+      "end_date": "Feb 2019",
+      "bullets": [
+        "Managed B2B dashboard product serving 500+ enterprise clients, delivering quarterly releases that improved workflow efficiency by 30%",
+        "Conducted 40+ user interviews and usability tests to inform product decisions, resulting in 25% reduction in customer churn",
+        "Coordinated with sales and customer success teams to prioritize features, contributing to $1.8M in upsell revenue"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Science",
+      "major": "Computer Science",
+      "university": "Stanford University",
+      "location": "Stanford, CA",
+      "graduation_year": "2017"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Certified Scrum Product Owner (CSPO)",
+      "issuer": "Scrum Alliance",
+      "year": "2020"
+    },
+    {
+      "name": "Product Management Certificate",
+      "issuer": "Product School",
+      "year": "2019"
+    }
+  ]
+}
