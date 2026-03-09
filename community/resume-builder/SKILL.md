@@ -145,6 +145,28 @@ Replace weak verbs with strong action verbs:
 - Vague soft skills without proof
 - Typos or grammatical errors
 
+## Resume Length Guidelines
+
+Choose the right length based on experience:
+
+**1 Page:**
+- 0-10 years of experience
+- Entry-level to mid-level roles
+- Career changers (focus on relevant experience only)
+- Startups/tech companies (prefer brevity)
+
+**2 Pages:**
+- 10+ years of experience
+- Senior/executive roles (Director, VP, C-suite)
+- Academic/research positions (publications needed)
+- Multiple highly relevant roles that all matter
+
+**Rule:** Every line must earn its place. If stretching to fill 2 pages, stick to 1. If cramming important achievements into tiny font, go to 2.
+
+**Never 3+ pages** (unless academic CV with publications)
+
+Recruiters spend 6-7 seconds on initial scan - front-load your best achievements on page 1.
+
 ## Quality Checklist
 
 Before finalizing, verify:
@@ -154,7 +176,7 @@ Before finalizing, verify:
 - [ ] No acronyms without first use spelled out
 - [ ] Contact info is parseable
 - [ ] File name: FirstName_LastName_JobTitle.pdf
-- [ ] 1-2 pages max
+- [ ] Correct length: 1 page (0-10 yrs) or 2 pages (10+ yrs)
 - [ ] Consistent formatting throughout
 - [ ] All dates and numbers accurate
 
@@ -186,7 +208,7 @@ TASK: Generate ATS-optimized resume following the template structure.
 CONSTRAINTS:
 - Match 70%+ of hard skills from job posting verbatim
 - Include 3-5 quantified achievements per recent role
-- Max 2 pages, 11pt font, single column
+- 1 page (0-10 yrs experience) or 2 pages (10+ yrs), 11pt font, single column
 - No tables, graphics, or creative formatting
 - Use action verbs from the Power Verb Bank
 
@@ -199,7 +221,7 @@ OUTPUT: Structured resume with clear sections and [BRACKETS] for missing data
 2. **Listing duties instead of achievements** - Show impact
 3. **Missing metrics** - Quantify everything possible
 4. **Inconsistent formatting** - Keep it uniform
-5. **Too long** - Respect the 1-2 page limit
+5. **Too long or too short** - 1 page for 0-10 yrs, 2 pages for 10+ yrs
 6. **Keyword stuffing** - Integrate naturally
 7. **Outdated information** - Keep it current
 8. **No proofreading** - Always check for errors
@@ -268,11 +290,12 @@ python generate_resume.py data.json output.pdf
 
 ### Agent Workflow
 
-1. Gather info from user
-2. Structure as JSON
-3. Write JSON file
-4. Run: `python generate_resume.py data.json resume.docx`
-5. Deliver file to user
+1. Gather info from user (work history, years of experience, target job)
+2. Determine length: 1 page (0-10 yrs) or 2 pages (10+ yrs)
+3. Structure as JSON
+4. Write JSON file
+5. Run: `python generate_resume.py data.json resume.docx`
+6. Deliver file to user
 
 ### File Naming
 
