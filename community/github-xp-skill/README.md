@@ -4,17 +4,7 @@ This is an Agent Skill for using the GitHub XP CLI tool to extract structured ex
 
 ## Installation
 
-Install this skill from the community skills repository:
-
-```bash
-npx skills add github.com/skills-repo/community/github-xp-skill
-```
-
-Or install locally if you've cloned this repository:
-
-```bash
-npx skills add ./community/github-xp-skill
-```
+This skill is available in the PocketMP community skills repository. AI agents will automatically have access to this skill when it's included in the skills registry.
 
 ## What This Skill Provides
 
@@ -44,4 +34,4 @@ Once installed, AI agents will automatically activate this skill when users ment
 
 - GitHub XP Tool: https://github.com/thejamesnick/github-xp
 - NPM Package: https://www.npmjs.com/package/github-xp
-- Agent Skills Standard: https://vercel.com/kb/guide/agent-skills-creating-installing-and-sharing-reusable-agent-context
+- PocketMP Skills: https://github.com/PocketAgentNetwork/pocketmp
