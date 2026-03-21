@@ -15,8 +15,29 @@
       "files": ["SKILL.md"]
     },
     {
-      "name": "web-search",
-      "description": "Search the web effectively and cite sources properly",
+      "name": "automation-master",
+      "description": "Advanced automation, task orchestration, and scripting expertise using Bash and Python. Use for writing robust scripts, CLI tools, and background jobs. Includes error handling (set -euo), dependencies, and idempotent patterns.",
+      "author": "PocketAgent Team",
+      "version": "1.0.0",
+      "files": ["SKILL.md"]
+    },
+    {
+      "name": "backend-architect",
+      "description": "Robust server-side engineering and API design for the sovereign network. Covers layered architecture (Handler/Service/Repo), RESTful API design, error handling, background jobs, and security-first logic.",
+      "author": "PocketAgent Team",
+      "version": "1.0.0",
+      "files": ["SKILL.md"]
+    },
+    {
+      "name": "clean-code",
+      "description": "Code quality standards and refactoring principles for building maintainable, human-readable sovereign codebases. Covers SOLID, KISS, DRY, YAGNI, naming, function sizing, and detecting technical debt (code smells).",
+      "author": "PocketAgent Team",
+      "version": "1.0.0",
+      "files": ["SKILL.md"]
+    },
+    {
+      "name": "cloud-master",
+      "description": "Infrastructure and server orchestration for the PocketAgent. Use when managing Docker containers, VPS health, deployment pipelines (GH Actions), and failover logic.",
       "author": "PocketAgent Team",
       "version": "1.0.0",
       "files": ["SKILL.md"]
@@ -29,14 +50,72 @@
       "files": ["SKILL.md"]
     },
     {
+      "name": "engineer",
+      "description": "Core engineering principles and master craftsman mindset for any software development task. Use when writing code, reviewing PRs, debugging, or making architectural decisions. Covers naming, structure, error handling, performance, and the senior developer's \"Boring is Better\" philosophy.",
+      "author": "PocketAgent Team",
+      "version": "1.0.0",
+      "files": ["SKILL.md"]
+    },
+    {
+      "name": "frontend-architect",
+      "description": "Design and implementation of sovereign user interfaces and web applications. Covers component architecture (Page/Feature/UI), state management, data fetching, accessibility (ARIA), and performance optimization.",
+      "author": "PocketAgent Team",
+      "version": "1.0.0",
+      "files": ["SKILL.md"]
+    },
+    {
       "name": "marketplace",
       "description": "How to browse, install, and manage skills from PocketMP",
+      "author": "PocketAgent Team",
+      "version": "1.0.0",
+      "files": ["SKILL.md"]
+    },
+    {
+      "name": "planner",
+      "description": "Project planning and task breakdown for actionable execution. Use when breaking down large features, creating implementation plans, prioritizing via MoSCoW, or identifying risks. Turns vague goals into concrete, trackable steps.",
+      "author": "PocketAgent Team",
+      "version": "1.0.0",
+      "files": ["SKILL.md"]
+    },
+    {
+      "name": "python-expert",
+      "description": "Advanced Python engineering for sovereign scripts and automation. Use when building Pydantic models, FastAPI routes, async logic, and data processing. Covers 3.10+ patterns, type hints, and PEP 8.",
+      "author": "PocketAgent Team",
+      "version": "1.0.0",
+      "files": ["SKILL.md"]
+    },
+    {
+      "name": "researcher",
+      "description": "Effective research strategies for solving problems and learning fast. Use when finding answers to technical questions, evaluating new technologies, verifying claims/sources, or learning new frameworks.",
+      "author": "PocketAgent Team",
+      "version": "1.0.0",
+      "files": ["SKILL.md"]
+    },
+    {
+      "name": "security-guard",
+      "description": "Sovereignty protection and digital security for the PocketAgent. Use when implementing auth, protecting data, handling secrets, or reviewing code for vulnerabilities. Covers Injection, XSS, Hashing, and Least Privilege.",
+      "author": "PocketAgent Team",
+      "version": "1.0.0",
+      "files": ["SKILL.md"]
+    },
+    {
+      "name": "web-search",
+      "description": "Search the web effectively and cite sources properly",
       "author": "PocketAgent Team",
       "version": "1.0.0",
       "files": ["SKILL.md"]
     }
   ],
   "community": [
+    {
+      "name": "github-xp-skill",
+      "description": "Extract structured GitHub experience data (projects, READMEs, skills) in JSON/Markdown format for AI-powered resume generation. Use when user mentions GitHub profile, resume building, portfolio generation, or extracting project experience from repositories.",
+      "author": "Nicholas James",
+      "version": "1.0.0",
+      "license": "MIT",
+      "tags": ["github", "resume", "portfolio", "career", "ai"],
+      "files": ["SKILL.md"]
+    },
     {
       "name": "resume-builder",
       "description": "Generate ATS-optimized resumes with quantified achievements and proper formatting",
